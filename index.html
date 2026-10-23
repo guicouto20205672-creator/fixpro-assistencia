@@ -64,6 +64,19 @@ input:focus, select:focus, textarea:focus { border-color:#3b82f6 !important; }
   .top { width:100%; }
 }
 
+
+/* Força painel principal no topo em dispositivos móveis */
+@media screen and (max-width: 700px) {
+  html, body { margin:0 !important; padding:0 !important; }
+  body { display:block !important; }
+  .app { display:flex !important; flex-direction:column !important; align-items:stretch !important; justify-content:flex-start !important; margin:0 !important; padding:0 !important; }
+  .sidebar { flex:0 0 auto !important; position:relative !important; top:0 !important; margin:0 !important; }
+  .main { flex:1 1 auto !important; align-self:stretch !important; margin:0 !important; padding:12px 12px 24px !important; transform:none !important; position:relative !important; top:0 !important; }
+  .top { margin-top:0 !important; padding-top:0 !important; }
+  .section { margin-top:0 !important; }
+  .section.active { display:block !important; }
+}
+
 </style>
 </head>
 <body>
