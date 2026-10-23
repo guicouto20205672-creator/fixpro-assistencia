@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assistência Pro — Ordens de Serviço</title>
+<style>
+:root{--bg:#0b0d12;--panel:#131722;--panel2:#191f2c;--line:#2a3242;--text:#f3f5f9;--muted:#9ca8ba;--red:#ef4444;--red2:#b91c1c;--green:#22c55e;--yellow:#fbbf24;--blue:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;background:var(--red);color:#fff;font-weight:700}button:hover{filter:brightness(1.08)}button.secondary{background:#273044;color:#e8edf6;border:1px solid var(--line)}button.danger{background:#7f1d1d}button.small{padding:6px 9px;font-size:12px}.app{display:grid;grid-template-columns:245px 1fr;min-height:100vh}.sidebar{background:#10141d;border-right:1px solid var(--line);padding:22px 14px;position:sticky;top:0;height:100vh}.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px;padding:6px 10px 24px}.brandmark{background:var(--red);border-radius:10px;padding:8px}.nav{display:grid;gap:7px}.nav button{background:transparent;text-align:left;color:var(--muted);font-weight:600}.nav button.active,.nav button:hover{background:#252b39;color:white}.sidebar-note{position:absolute;bottom:20px;left:18px;right:18px;color:var(--muted);font-size:12px}.main{padding:28px;max-width:1500px;width:100%;margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:24px}.eyebrow{color:var(--red);font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:800}.top h1{font-size:28px;margin:3px 0}.muted{color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}.metric{font-size:27px;font-weight:850;margin-top:7px}.section{display:none}.section.active{display:block}.panel h2,.panel h3{margin:0 0 14px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.formgrid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}label{font-size:13px;color:#c6cfdd;font-weight:700}input,select,textarea{width:100%;border:1px solid #343d50;background:#0d1119;color:var(--text);border-radius:9px;padding:11px 12px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--red)}textarea{min-height:80px;resize:vertical}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.service-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.service-option{border:1px solid var(--line);background:#0e121b;padding:10px;border-radius:10px;display:flex;gap:9px;align-items:flex-start}.service-option input{width:auto;margin-top:4px;accent-color:var(--red)}.service-option span{flex:1}.service-option small{display:block;color:var(--muted)}.photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.photo{border:1px dashed #485368;border-radius:12px;min-height:118px;padding:8px;text-align:center;background:#0e121b;display:flex;flex-direction:column;justify-content:center;gap:6px;overflow:hidden}.photo img{width:100%;height:110px;object-fit:cover;border-radius:7px}.photo input{font-size:11px;padding:6px}.photo strong{font-size:12px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:680px}th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}td{font-size:14px}.pill{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:800;background:#293244;color:#dce5f4}.pill.green{background:#123b29;color:#86efac}.pill.yellow{background:#453715;color:#fde68a}.pill.red{background:#4b1d24;color:#fda4af}.empty{text-align:center;color:var(--muted);padding:28px}.split{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.notice{border:1px solid #5c4720;background:#292111;color:#f8d98a;padding:12px;border-radius:10px;font-size:13px;margin:14px 0}.success{border-color:#245a3b;background:#10281c;color:#a7f3d0}.totals{display:grid;gap:8px;background:#0d1119;border:1px solid var(--line);padding:14px;border-radius:12px}.totalrow{display:flex;justify-content:space-between;gap:12px}.totalrow.big{font-size:19px;font-weight:900;border-top:1px solid var(--line);padding-top:9px}.search{max-width:330px}.hidden{display:none!important}.footer{font-size:12px;color:var(--muted);margin-top:20px}
+@media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto;padding:10px;border-right:0;border-bottom:1px solid var(--line)}.brand{padding:5px 8px 12px}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px 11px}.sidebar-note{display:none}.main{padding:17px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}}
+@media(max-width:560px){.top{align-items:flex-start;flex-direction:column}.top h1{font-size:24px}.formgrid,.formgrid.three{grid-template-columns:1fr}.service-list{grid-template-columns:1fr}.photos{grid-template-columns:repeat(2,minmax(0,1fr))}.card,.panel{padding:14px}.actions button{flex:1}.cards{gap:9px}.metric{font-size:23px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><span class="brandmark">🔧</span><span>Assistência <span style="color:var(--red)">Pro</span></span></div>
+  <nav class="nav">
+    <button class="active" data-tab="dashboard">▦ Visão geral</button>
+    <button data-tab="orders">▤ Ordens de serviço</button>
+    <button data-tab="neworder">＋ Nova ordem</button>
+    <button data-tab="inventory">▣ Estoque de peças</button>
+    <button data-tab="services">☷ Catálogo de serviços</button>
+    <button data-tab="finance">R$ Financeiro</button>
+    <button data-tab="backup">⇧ Backup e dados</button>
+  </nav>
+  <div class="sidebar-note">Protótipo inicial • dados salvos neste navegador.<br>Não use ainda como único registro de uma assistência real.</div>
+</aside>
+<main class="main">
+  <header class="top"><div><div class="eyebrow">Gestão de assistência técnica</div><h1 id="pageTitle">Visão geral</h1><div class="muted">Ordens, peças, atendimento e financeiro em um só lugar.</div></div><button onclick="showTab('neworder')">＋ Nova ordem de serviço</button></header>
+
+  <section class="section active" id="dashboard">
+    <div class="cards">
+      <div class="card"><div class="muted">Ordens abertas</div><div class="metric" id="mOpen">0</div><div class="muted">Em andamento</div></div>
+      <div class="card"><div class="muted">Aguardando peça</div><div class="metric" id="mParts">0</div><div class="muted">Dependem de estoque</div></div>
+      <div class="card"><div class="muted">Prontas para retirada</div><div class="metric" id="mReady">0</div><div class="muted">Serviço concluído</div></div>
+      <div class="card"><div class="muted">Recebimentos registrados</div><div class="metric" id="mRevenue">R$ 0,00</div><div class="muted">Pagamentos informados</div></div>
+    </div>
+    <div class="split">
+      <div class="panel"><div class="panel-head"><h2>Ordens recentes</h2><button class="secondary small" onclick="showTab('orders')">Ver todas</button></div><div id="recentOrders"></div></div>
+      <div class="panel"><h2>Alertas de estoque</h2><div id="stockAlerts"></div><div class="notice">Lembrete: confira o estoque físico e faça backup regularmente. Este protótipo armazena dados no navegador atual.</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="neworder">
+    <div class="panel">
+      <div class="panel-head"><h2 id="orderFormTitle">Cadastrar ordem de serviço</h2><span class="pill">Entrada do aparelho</span></div>
+      <form id="orderForm">
+        <input type="hidden" id="editId">
+        <h3>1. Dados do cliente e aparelho</h3>
+        <div class="formgrid three">
+          <div class="field"><label for="customer">Nome do cliente *</label><input id="customer" required placeholder="Nome completo"></div>
+          <div class="field"><label for="phone">Telefone / WhatsApp *</label><input id="phone" required placeholder="(61) 99999-9999"></div>
+          <div class="field"><label for="entryDate">Data de entrada *</label><input id="entryDate" type="date" required></div>
+          <div class="field"><label for="brand">Marca *</label><select id="brand" required><option value="">Selecione</option><option>Samsung</option><option>Motorola</option><option>Apple / iPhone</option><option>Xiaomi</option><option>Realme</option><option>Infinix</option><option>Outra</option></select></div>
+          <div class="field"><label for="model">Modelo *</label><input id="model" required placeholder="Ex.: Galaxy A15"></div>
+          <div class="field"><label for="color">Cor</label><input id="color" placeholder="Ex.: preto"></div>
+          <div class="field"><label for="imei">IMEI / número de série (opcional)</label><input id="imei" placeholder="Somente se necessário"></div>
+          <div class="field"><label for="accessories">Acessórios recebidos</label><input id="accessories" placeholder="Ex.: capinha, bandeja SIM"></div>
+          <div class="field"><label for="dueDate">Previsão de entrega</label><input id="dueDate" type="date"></div>
+        </div>
+        <div class="field" style="margin-top:14px"><label for="reported">Defeito informado pelo cliente *</label><select id="reported" required><option value="">Selecione o defeito principal</option><option>Tela quebrada / imagem</option><option>Não liga</option><option>Não carrega</option><option>Sem áudio / microfone</option><option>Câmera com defeito</option><option>Bateria descarregando</option><option>Danos por líquido</option><option>Problema de software</option><option>Outro</option></select></div>
+        <div class="field" style="margin-top:14px"><label for="condition">Estado físico / observações de entrada</label><textarea id="condition" placeholder="Descreva riscos, trincas, amassados, danos prévios e outros detalhes observados."></textarea></div>
+        <div class="field" style="margin-top:14px"><label for="tests">Checklist de funcionamento na entrada</label><textarea id="tests" placeholder="Ex.: tela, toque, câmeras, áudio, botões, carregamento. Registre o que foi testado e o que não foi possível testar."></textarea></div>
+
+        <h3 style="margin-top:25px">2. Registro fotográfico de entrada</h3>
+        <div class="notice">Tire fotos nítidas da frente, traseira, laterais e de cada dano visível. As fotos ficam anexadas a esta OS no protótipo. Não fotografe dados pessoais desnecessários exibidos na tela do aparelho.</div>
+        <div class="photos" id="photoGrid">
+          <div class="photo"><strong>Frente / tela</strong><input type="file" accept="image/*" capture="environment" data-photo="front"></div>
+          <div class="photo"><strong>Traseira</strong><input type="file" accept="image/*" capture="environment" data-photo="back"></div>
+          <div class="photo"><strong>Lateral / cantos</strong><input type="file" accept="image/*" capture="environment" data-photo="side"></div>
+          <div class="photo"><strong>Danos específicos</strong><input type="file" accept="image/*" capture="environment" data-photo="damage"></div>
+        </div>
+        <h3 style="margin-top:25px">3. Serviços selecionados e peças</h3>
+        <div class="muted" style="margin-bottom:10px">Marque os serviços desejados. O preço cobrado e a peça utilizada podem ser ajustados nesta ordem.</div>
+        <div class="service-list" id="serviceOptions"></div>
+        <div class="field" style="margin-top:14px"><label for="extraNotes">Observações técnicas / serviços adicionais</label><textarea id="extraNotes" placeholder="Detalhes complementares, diagnóstico técnico, etc."></textarea></div>
+        <h3 style="margin-top:25px">4. Orçamento e acompanhamento</h3>
+        <div class="formgrid three">
+          <div class="field"><label for="status">Status da OS</label><select id="status"><option>Recebido</option><option>Em diagnóstico</option><option>Aguardando aprovação</option><option>Aguardando peça</option><option>Em reparo</option><option>Em teste</option><option>Pronto para retirada</option><option>Entregue</option><option>Cancelado</option></select></div>
+          <div class="field"><label for="approval">Aprovação do orçamento</label><select id="approval"><option>Pendente</option><option>Aprovado</option><option>Recusado</option><option>Não se aplica</option></select></div>
+          <div class="field"><label for="warranty">Garantia informada</label><select id="warranty"><option>Conforme política da assistência</option><option>30 dias</option><option>90 dias</option><option>Sem garantia — justificar nas observações</option></select></div>
+          <div class="field"><label for="discount">Desconto (R$)</label><input id="discount" type="number" min="0" step=".01" value="0"></div>
+          <div class="field"><label for="paid">Valor já recebido (R$)</label><input id="paid" type="number" min="0" step=".01" value="0"></div>
+          <div class="field"><label for="payment">Forma de pagamento</label><select id="payment"><option>Não recebido</option><option>Pix</option><option>Dinheiro</option><option>Cartão de débito</option><option>Cartão de crédito</option><option>Transferência</option><option>Misto</option></select></div>
+        </div>
+        <div class="totals" style="margin-top:15px">
+          <div class="totalrow"><span class="muted">Total dos serviços/peças</span><strong id="subtotal">R$ 0,00</strong></div>
+          <div class="totalrow"><span class="muted">Desconto</span><strong id="discountView">R$ 0,00</strong></div>
+          <div class="totalrow big"><span>Total do orçamento</span><span id="grandTotal">R$ 0,00</span></div>
+          <div class="totalrow"><span class="muted">Saldo pendente</span><strong id="balance">R$ 0,00</strong></div>
+        </div>
+        <div class="actions"><button type="submit">Salvar ordem de serviço</button><button type="button" class="secondary" onclick="resetOrderForm()">Limpar formulário</button></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="orders">
+    <div class="panel"><div class="panel-head"><h2>Ordens de serviço</h2><input class="search" id="orderSearch" placeholder="Buscar por OS, cliente, telefone ou modelo"></div><div class="tablewrap" id="ordersTable"></div></div>
+  </section>
+
+  <section class="section" id="inventory">
+    <div class="split">
+      <div class="panel"><h2>Cadastrar / atualizar peça</h2>
+        <form id="partForm">
+          <input type="hidden" id="partId">
+          <div class="formgrid">
+            <div class="field"><label>Nome da peça *</label><input id="partName" required placeholder="Ex.: Tela Galaxy A15"></div>
+            <div class="field"><label>Compatibilidade / modelo</label><input id="partModel" placeholder="Ex.: SM-A155"></div>
+            <div class="field"><label>Código / SKU</label><input id="partSku" placeholder="Código interno ou de barras"></div>
+            <div class="field"><label>Fornecedor</label><input id="partSupplier" placeholder="Nome do fornecedor"></div>
+            <div class="field"><label>Custo unitário (R$) *</label><input id="partCost" required type="number" min="0" step=".01"></div>
+            <div class="field"><label>Preço de venda da peça (R$)</label><input id="partPrice" type="number" min="0" step=".01" value="0"></div>
+            <div class="field"><label>Quantidade em estoque *</label><input id="partQty" required type="number" min="0" step="1" value="0"></div>
+            <div class="field"><label>Estoque mínimo</label><input id="partMin" type="number" min="0" step="1" value="1"></div>
+          </div>
+          <div class="actions"><button type="submit">Salvar peça</button><button type="button" class="secondary" onclick="resetPartForm()">Limpar</button></div>
+        </form>
+      </div>
+      <div class="panel"><h2>Movimentar estoque</h2>
+        <form id="movementForm">
+          <div class="field"><label>Peça</label><select id="movementPart" required></select></div>
+          <div class="formgrid">
+            <div class="field"><label>Movimentação</label><select id="movementType"><option value="in">Entrada / compra</option><option value="out">Saída / uso ou perda</option></select></div>
+            <div class="field"><label>Quantidade</label><input id="movementQty" type="number" min="1" step="1" value="1" required></div>
+          </div>
+          <div class="field" style="margin-top:12px"><label>Motivo / referência</label><input id="movementReason" placeholder="Ex.: compra, ajuste, OS #0012"></div>
+          <div class="actions"><button type="submit">Registrar movimentação</button></div>
+        </form>
+        <div class="notice">Toda saída manual deve ter um motivo. Na versão inicial, a baixa vinculada a OS é registrada quando o técnico confirma o consumo da peça, evitando descontar estoque só porque um orçamento foi criado.</div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:16px"><div class="panel-head"><h2>Estoque atual</h2><input class="search" id="partSearch" placeholder="Buscar peça / modelo / SKU"></div><div class="tablewrap" id="inventoryTable"></div></div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="split">
+      <div class="panel"><h2>Catálogo de serviços</h2><form id="serviceForm">
+        <input type="hidden" id="serviceId">
+        <div class="field"><label>Nome do serviço *</label><input id="serviceName" required placeholder="Ex.: Troca de tela"></div>
+        <div class="field" style="margin-top:12px"><label>Categoria</label><select id="serviceCategory"><option>Peça e reparo</option><option>Diagnóstico</option><option>Software</option><option>Limpeza</option><option>Outro</option></select></div>
+        <div class="field" style="margin-top:12px"><label>Peça do estoque (opcional)</label><select id="servicePart"></select></div>
+        <div class="formgrid" style="margin-top:12px">
+          <div class="field"><label>Custo padrão da peça (R$)</label><input id="serviceCost" type="number" min="0" step=".01" value="0"></div>
+          <div class="field"><label>Preço cobrado (R$) *</label><input id="servicePrice" type="number" min="0" step=".01" value="0" required></div>
+          <div class="field"><label>Mão de obra incluída (R$)</label><input id="serviceLabor" type="number" min="0" step=".01" value="0"></div>
+          <div class="field"><label>Tempo estimado (minutos)</label><input id="serviceTime" type="number" min="0" step="1" value="60"></div>
+        </div>
+        <div class="actions"><button type="submit">Salvar serviço</button><button type="button" class="secondary" onclick="resetServiceForm()">Limpar</button></div>
+      </form></div>
+      <div class="panel"><h2>Serviços disponíveis</h2><div id="serviceTable"></div><div class="notice">Cadastre os serviços mais comuns uma única vez. Eles aparecerão como opções na ordem de serviço, com preço sugerido e peça vinculada quando houver.</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="finance">
+    <div class="cards">
+      <div class="card"><div class="muted">Recebido</div><div class="metric" id="fReceived">R$ 0,00</div></div>
+      <div class="card"><div class="muted">Em aberto</div><div class="metric" id="fPending">R$ 0,00</div></div>
+      <div class="card"><div class="muted">Custo estimado das peças nas OS</div><div class="metric" id="fCosts">R$ 0,00</div></div>
+      <div class="card"><div class="muted">Margem estimada*</div><div class="metric" id="fMargin">R$ 0,00</div></div>
+    </div>
+    <div class="panel"><h2>Registrar despesa</h2><form id="expenseForm"><div class="formgrid three">
+      <div class="field"><label>Descrição *</label><input id="expenseDesc" required placeholder="Ex.: frete, material"></div>
+      <div class="field"><label>Valor (R$) *</label><input id="expenseAmount" required type="number" min=".01" step=".01"></div>
+      <div class="field"><label>Data</label><input id="expenseDate" type="date" required></div>
+    </div><div class="actions"><button type="submit">Registrar despesa</button></div></form><div id="expenseTable" style="margin-top:16px"></div><p class="footer">*Margem estimada = total orçado menos custo estimado das peças e despesas registradas. Não é lucro contábil: ainda pode excluir impostos, taxas, custos fixos e mão de obra.</p></div>
+  </section>
+
+  <section class="section" id="backup">
+    <div class="panel"><h2>Backup e segurança dos dados</h2><p class="muted">Exporte uma cópia JSON para guardar seus cadastros. A importação substitui os dados atuais deste navegador, portanto faça um backup antes.</p>
+      <div class="actions"><button onclick="exportBackup()">Exportar backup JSON</button><label class="secondary" style="display:inline-flex;align-items:center;border-radius:10px;padding:10px 14px;cursor:pointer">Importar backup JSON<input id="importFile" type="file" accept=".json,application/json" style="display:none"></label><button class="secondary" onclick="window.print()">Imprimir tela</button></div>
+      <div class="notice">Importante: este protótipo usa armazenamento local do navegador. As fotos podem ocupar bastante espaço e não são sincronizadas automaticamente com outros aparelhos. Para uso profissional multiusuário, será necessário conectar banco de dados em nuvem, autenticação, armazenamento seguro de fotos e políticas de acesso.</div>
+      <h3>Boas práticas recomendadas</h3><ul class="muted"><li>Não guardar senha, PIN ou padrão do aparelho na OS.</li><li>Limitar acesso às fotos e dados dos clientes.</li><li>Manter registro de alterações e cópias de segurança.</li><li>Explicar ao cliente a finalidade do registro fotográfico e obter ciência.</li><li>Não usar este protótipo como único sistema de produção sem testar restauração e segurança.</li></ul>
+      <button class="danger" onclick="clearAllData()">Apagar todos os dados locais</button>
+    </div>
+  </section>
+  <div class="footer">Assistência Pro • Protótipo funcional local • Próxima etapa recomendada: banco de dados seguro e sincronização entre dispositivos.</div>
+</main>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const money=n=>(Number(n)||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const today=()=>new Date().toISOString().slice(0,10);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const initialServices=[
+ ['Troca de tela','Peça e reparo',0,0,0,90],['Troca de conector de carga','Peça e reparo',0,0,0,60],
+ ['Troca de microfone','Peça e reparo',0,0,0,60],['Troca de câmera traseira','Peça e reparo',0,0,0,60],
+ ['Troca de câmera frontal','Peça e reparo',0,0,0,60],['Troca de carcaça','Peça e reparo',0,0,0,120],
+ ['Troca de flex','Peça e reparo',0,0,0,60],['Troca de bateria','Peça e reparo',0,0,0,60],
+ ['Reparo na placa','Peça e reparo',0,0,0,120],['Limpeza técnica','Limpeza',0,0,0,45],
+ ['Reparo de áudio','Peça e reparo',0,0,0,60],['Atualização de software','Software',0,0,0,45],
+ ['Diagnóstico técnico','Diagnóstico',0,0,0,30],['Outro serviço','Outro',0,0,0,60]
+].map((s,i)=>({id:'s'+i,name:s[0],category:s[1],partId:'',cost:s[2],price:s[3],labor:s[4],time:s[5]}));
+let db=loadDB(), photosDraft={};
+function loadDB(){try{return JSON.parse(localStorage.getItem('assistenciaProDB'))||{orders:[],parts:[],services:initialServices,expenses:[],movements:[]}}catch(e){return {orders:[],parts:[],services:initialServices,expenses:[],movements:[]}}}
+function saveDB(){localStorage.setItem('assistenciaProDB',JSON.stringify(db));renderAll()}
+function showTab(id){document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));const names={dashboard:'Visão geral',orders:'Ordens de serviço',neworder:'Nova ordem de serviço',inventory:'Estoque de peças',services:'Catálogo de serviços',finance:'Financeiro',backup:'Backup e dados'};$('pageTitle').textContent=names[id]||id;if(id==='neworder')renderServiceOptions();window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+$('entryDate').value=today();$('expenseDate').value=today();
+function readAsDataURL(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
+document.querySelectorAll('[data-photo]').forEach(input=>input.addEventListener('change',async e=>{
+ const file=e.target.files[0];if(!file)return;if(!file.type.startsWith('image/'))return alert('Escolha um arquivo de imagem.');
+ if(file.size>4*1024*1024){alert('Para este protótipo, escolha uma foto de até 4 MB. Uma versão com nuvem poderá otimizar e armazenar imagens maiores.');e.target.value='';return}
+ try{const data=await readAsDataURL(file);photosDraft[input.dataset.photo]={data,name:file.name,at:new Date().toISOString()};const box=input.closest('.photo');let img=box.querySelector('img');if(!img){img=document.createElement('img');box.insertBefore(img,input)}img.src=data;input.style.display='none';const again=document.createElement('button');again.className='secondary small';again.type='button';again.textContent='Trocar foto';again.onclick=()=>{delete photosDraft[input.dataset.photo];input.value='';input.style.display='block';img.remove();again.remove()};box.appendChild(again)}catch(err){alert('Não foi possível ler a foto.')}
+}));
+function renderServiceOptions(selected=[]){
+ const root=$('serviceOptions'); if(!root)return; root.innerHTML='';
+ db.services.forEach(s=>{
+  const lab=document.createElement('label'); lab.className='service-option';
+  const checked=selected.some(x=>x.serviceId===s.id);
+  lab.innerHTML=`<input type="checkbox" data-sid="${s.id}" ${checked?'checked':''}><span>${esc(s.name)}<small>${esc(s.category)} • sugerido: ${money(s.price)}</small></span>`;
+  const cb=lab.querySelector('input');
+  cb.addEventListener('change',()=>{
+   let priceInput=lab.querySelector('.service-price');
+   if(cb.checked){
+    if(!priceInput){
+     priceInput=document.createElement('div'); priceInput.className='field'; priceInput.style.marginTop='7px';
+     priceInput.innerHTML=`<label>Preço cobrado (R$)</label><input type="number" min="0" step=".01" value="${Number(s.price)||0}" data-price="${s.id}"><label>Peça utilizada (opcional)</label><select data-part="${s.id}">${partOptions(s.partId)}</select>`;
+     lab.querySelector('span').appendChild(priceInput);
+     priceInput.querySelector('input').addEventListener('input',updateTotals);
+     priceInput.querySelector('select').addEventListener('change',updateTotals);
+    }
+   }else if(priceInput){priceInput.remove();}
+   updateTotals();
+  });
+  root.appendChild(lab);
+  if(checked){
+   cb.dispatchEvent(new Event('change'));
+   const price=root.querySelector(`[data-price="${s.id}"]`);
+   const old=selected.find(x=>x.serviceId===s.id);
+   if(price&&old)price.value=old.price;
+  }
+ });
+ updateTotals();
+}
+function partOptions(selected=''){return '<option value="">Sem peça vinculada</option>'+db.parts.map(p=>`<option value="${p.id}" ${p.id===selected?'selected':''}>${esc(p.name)} — estoque ${p.qty}</option>`).join('')}
+function getSelectedServices(){return [...$('serviceOptions').querySelectorAll('input[data-sid]:checked')].map(cb=>{const s=db.services.find(x=>x.id===cb.dataset.sid)||{};const p=$('serviceOptions').querySelector(`[data-price="${s.id}"]`);const ps=$('serviceOptions').querySelector(`[data-part="${s.id}"]`);return {serviceId:s.id,name:s.name,category:s.category,price:Number(p?.value??s.price)||0,partId:ps?.value||'',cost:Number(s.cost)||0,labor:Number(s.labor)||0}})}
+function updateTotals(){const items=getSelectedServices();const subtotal=items.reduce((a,x)=>a+x.price,0),discount=Number($('discount').value)||0,paid=Number($('paid').value)||0,total=Math.max(0,subtotal-discount);$('subtotal').textContent=money(subtotal);$('discountView').textContent=money(discount);$('grandTotal').textContent=money(total);$('balance').textContent=money(Math.max(0,total-paid))}
+$('discount').addEventListener('input',updateTotals);$('paid').addEventListener('input',updateTotals);
+$('orderForm').addEventListener('submit',e=>{e.preventDefault();const id=$('editId').value;const items=getSelectedServices();if(!items.length&&!confirm('Nenhum serviço foi selecionado. Deseja salvar a OS mesmo assim?'))return;
+ const existing=db.orders.find(o=>o.id===id);const order={id:id||uid(),number:existing?.number||String(Math.max(1000,...db.orders.map(o=>Number(o.number)||0))+1),customer:$('customer').value.trim(),phone:$('phone').value.trim(),entryDate:$('entryDate').value,brand:$('brand').value,model:$('model').value.trim(),color:$('color').value.trim(),imei:$('imei').value.trim(),accessories:$('accessories').value.trim(),dueDate:$('dueDate').value,reported:$('reported').value,condition:$('condition').value,tests:$('tests').value,extraNotes:$('extraNotes').value,status:$('status').value,approval:$('approval').value,warranty:$('warranty').value,discount:Number($('discount').value)||0,paid:Number($('paid').value)||0,payment:$('payment').value,services:items,photos:{...(existing?.photos||{}),...photosDraft},updatedAt:new Date().toISOString(),createdAt:existing?.createdAt||new Date().toISOString(),entryTimestamp:existing?.entryTimestamp||new Date().toISOString(),consumed:existing?.consumed||false};
+ order.subtotal=items.reduce((a,x)=>a+x.price,0);order.total=Math.max(0,order.subtotal-order.discount);order.balance=Math.max(0,order.total-order.paid);
+ // Required photo checklist for new orders, with an explicit override if a photo cannot be taken.
+ if(!existing && Object.keys(order.photos).length<2){if(!confirm('Foram anexadas menos de 2 fotos. O recomendado é fotografar frente, traseira e danos. Deseja salvar mesmo assim?'))return}
+ if(existing&&existing.consumed){order.consumed=true}
+ db.orders=db.orders.filter(o=>o.id!==order.id);db.orders.unshift(order);photosDraft={};resetOrderForm(false);saveDB();showTab('orders');alert('OS #'+order.number+' salva com sucesso neste navegador. Faça backup dos dados.');});
+function resetOrderForm(render=true){$('orderForm').reset();$('editId').value='';$('orderFormTitle').textContent='Cadastrar ordem de serviço';$('entryDate').value=today();$('discount').value=0;$('paid').value=0;photosDraft={};document.querySelectorAll('[data-photo]').forEach(i=>{i.value='';i.style.display='block';const box=i.closest('.photo');box.querySelectorAll('img,button').forEach(n=>n.remove())});renderServiceOptions();updateTotals();if(render){}}
+function editOrder(id){const o=db.orders.find(x=>x.id===id);if(!o)return;showTab('neworder');$('editId').value=o.id;$('orderFormTitle').textContent='Editar OS #'+o.number;['customer','phone','entryDate','brand','model','color','imei','accessories','dueDate','reported','condition','tests','extraNotes','status','approval','warranty','discount','paid','payment'].forEach(k=>$(k).value=o[k]??'');photosDraft={};document.querySelectorAll('[data-photo]').forEach(i=>{const key=i.dataset.photo,photo=o.photos?.[key],box=i.closest('.photo');i.value='';i.style.display='block';box.querySelectorAll('img,button').forEach(n=>n.remove());if(photo){const img=document.createElement('img');img.src=photo.data;box.insertBefore(img,i);i.style.display='none';const b=document.createElement('button');b.className='secondary small';b.type='button';b.textContent='Trocar foto';b.onclick=()=>{photosDraft[key]=null;i.style.display='block';img.remove();b.remove()};box.appendChild(b)}});renderServiceOptions(o.services||[]);(o.services||[]).forEach(s=>{const p=$('serviceOptions').querySelector(`[data-price="${s.serviceId}"]`);if(p)p.value=s.price;const ps=$('serviceOptions').querySelector(`[data-part="${s.serviceId}"]`);if(ps)ps.value=s.partId||''});updateTotals()}
+function markConsumed(id){const o=db.orders.find(x=>x.id===id);if(!o||o.consumed)return alert('Peças desta OS já foram baixadas ou não há OS.');if(!confirm('Confirmar consumo das peças vinculadas a esta OS? O estoque será atualizado.'))return;for(const s of o.services){if(!s.partId)continue;const p=db.parts.find(x=>x.id===s.partId);if(!p)continue;if(p.qty<1)return alert('Estoque insuficiente para '+p.name+'. Ajuste o estoque antes de confirmar.')}for(const s of o.services){if(!s.partId)continue;const p=db.parts.find(x=>x.id===s.partId);if(p){p.qty--;db.movements.unshift({id:uid(),partId:p.id,type:'out',qty:1,reason:'Consumo OS #'+o.number,date:today()})}}o.consumed=true;o.status='Em teste';o.updatedAt=new Date().toISOString();saveDB();alert('Consumo registrado. Estoque atualizado.')}
+function changeStatus(id){const o=db.orders.find(x=>x.id===id);if(!o)return;const statuses=['Recebido','Em diagnóstico','Aguardando aprovação','Aguardando peça','Em reparo','Em teste','Pronto para retirada','Entregue','Cancelado'];const next=prompt('Novo status:\n'+statuses.map((s,i)=>(i+1)+'. '+s).join('\n'),String(statuses.indexOf(o.status)+1));const n=Number(next);if(!n||!statuses[n-1])return;o.status=statuses[n-1];o.updatedAt=new Date().toISOString();saveDB()}
+function viewOrder(id){const o=db.orders.find(x=>x.id===id);if(!o)return;const photos=Object.entries(o.photos||{}).filter(([k,v])=>v?.data).map(([k,v])=>`<div><img src="${v.data}" style="width:100%;max-height:240px;object-fit:contain;background:#080a0e;border-radius:8px"><small>${esc(k)} • ${esc(v.name||'foto')}</small></div>`).join('');const w=window.open('','_blank');if(!w)return alert('Permita a abertura de janela para visualizar a OS.');w.document.write(`<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>OS ${o.number}</title><body style="font:15px Arial;max-width:900px;margin:25px auto;padding:0 15px;color:#222"><h1>Ordem de Serviço #${o.number}</h1><p><b>Cliente:</b> ${esc(o.customer)} • ${esc(o.phone)}</p><p><b>Aparelho:</b> ${esc(o.brand)} ${esc(o.model)} • ${esc(o.color)}</p><p><b>Entrada:</b> ${esc(o.entryDate)} • <b>Previsão:</b> ${esc(o.dueDate||'Não informada')}</p><p><b>Defeito informado:</b> ${esc(o.reported)}</p><p><b>Condição na entrada:</b> ${esc(o.condition||'Não informada')}</p><p><b>Checklist:</b> ${esc(o.tests||'Não informado')}</p><p><b>Serviços:</b> ${o.services.map(s=>esc(s.name)+' — '+money(s.price)).join('<br>')}</p><p><b>Observações:</b> ${esc(o.extraNotes||'—')}</p><p><b>Status:</b> ${esc(o.status)} • <b>Aprovação:</b> ${esc(o.approval)}</p><p><b>Total:</b> ${money(o.total)} • <b>Recebido:</b> ${money(o.paid)} • <b>Saldo:</b> ${money(o.balance)}</p><h2>Registro fotográfico</h2><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">${photos||'Sem fotos anexadas'}</div><p style="margin-top:35px">Assinatura/ciência do cliente: _________________________ Data: ____/____/______</p><p>Responsável pela assistência: _________________________</p><button onclick="window.print()">Imprimir / Salvar em PDF</button></body></html>`);w.document.close()}
+
+function printOrderCopy(id,kind){
+ const o=db.orders.find(x=>x.id===id); if(!o)return;
+ const technician=kind==='tecnico', title=technician?'FICHA INTERNA DO TÉCNICO':'COMPROVANTE DO CLIENTE';
+ const services=(o.services||[]).map(s=>`<tr><td>${esc(s.name)}</td><td>${technician?'—':money(s.price)}</td></tr>`).join('');
+ const photoHtml=technician?Object.entries(o.photos||{}).filter(([k,v])=>v?.data).map(([k,v])=>`<div style="margin:8px 0;display:inline-block;width:46%;vertical-align:top"><img src="${v.data}" style="width:100%;max-height:180px;object-fit:contain"><small>${esc(k)} • ${esc(v.name||'foto')}</small></div>`).join(''):'';
+ const w=window.open('','_blank'); if(!w)return alert('Permita a abertura de janela para imprimir.');
+ w.document.write(`<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${title} OS ${o.number}</title>
+ <body style="font:14px Arial;max-width:780px;margin:20px auto;padding:0 16px;color:#222">
+ <h1 style="margin-bottom:4px">${esc(title)}</h1><h2 style="margin-top:0">Ordem de Serviço #${o.number}</h2>
+ <p><b>Cliente:</b> ${esc(o.customer)} &nbsp; <b>Telefone:</b> ${esc(o.phone)}</p>
+ <p><b>Aparelho:</b> ${esc(o.brand)} ${esc(o.model)} &nbsp; <b>Cor:</b> ${esc(o.color||'—')}</p>
+ <p><b>Entrada:</b> ${esc(o.entryDate)} &nbsp; <b>Previsão:</b> ${esc(o.dueDate||'Não informada')}</p>
+ <p><b>Defeito relatado:</b> ${esc(o.reported||'—')}</p>
+ <p><b>Condição na entrada:</b> ${esc(o.condition||'Não informada')}</p>
+ ${technician?`<p><b>Checklist/testes:</b> ${esc(o.tests||'Não informado')}</p><p><b>Acessórios recebidos:</b> ${esc(o.accessories||'Nenhum informado')}</p><p><b>IMEI:</b> ${esc(o.imei||'Não informado')}</p>`:''}
+ <h3>${technician?'Serviços autorizados / executar':'Serviços e orçamento'}</h3>
+ <table style="width:100%;border-collapse:collapse"><thead><tr><th style="text-align:left;border-bottom:1px solid #999;padding:7px">Serviço</th><th style="text-align:right;border-bottom:1px solid #999;padding:7px">${technician?'Observação':'Valor'}</th></tr></thead><tbody>${services||'<tr><td colspan="2">Diagnóstico pendente</td></tr>'}</tbody></table>
+ ${technician?`<p><b>Observações internas:</b> ${esc(o.extraNotes||'—')}</p><p><b>Peças baixadas?</b> ${o.consumed?'Sim':'Não'}</p><p><b>Status:</b> ${esc(o.status)}</p><h3>Fotos do aparelho na entrada</h3>${photoHtml||'Nenhuma foto anexada'}<p>Diagnóstico técnico: __________________________________________________</p><p>Peças utilizadas: _____________________________________________________</p><p>Testes finais: ________________________________________________________</p>`:`<p><b>Orçamento total:</b> ${money(o.total)} &nbsp; <b>Pago:</b> ${money(o.paid)} &nbsp; <b>Saldo:</b> ${money(o.balance)}</p><p><b>Status:</b> ${esc(o.status)}</p><p>Este comprovante registra o recebimento do aparelho e os serviços/orçamento informados. Reparos adicionais devem ser comunicados e aprovados pelo cliente antes da execução.</p><p style="margin-top:35px">Assinatura/ciência do cliente: __________________________________</p><p>Data: ____/____/______</p>`}
+ <hr><p style="font-size:11px;color:#555">Documento gerado pelo Assistência Pro. Confira os dados antes de imprimir.</p><button onclick="window.print()">Imprimir / Salvar em PDF</button></body></html>`);
+ w.document.close();
+}
+
+
+function sendCustomerUpdate(id,type){
+ const o=db.orders.find(x=>x.id===id); if(!o)return;
+ const phone=String(o.phone||'').replace(/\D/g,'');
+ if(!phone){alert('Esta OS não tem telefone do cliente cadastrado.');return}
+ const intl=phone.startsWith('55')?phone:(phone.length>=10?'55'+phone:phone);
+ const dt=new Date(o.entryTimestamp||o.createdAt||Date.now());
+ const date=dt.toLocaleDateString('pt-BR'), time=dt.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+ let message='';
+ if(type==='entrada'){
+  message=`Olá, ${o.customer}! Confirmamos o recebimento do seu aparelho em nossa assistência técnica.\\n\\nOS: #${o.number}\\nData da entrada: ${date}\\nHorário: ${time}\\nAparelho: ${o.brand||''} ${o.model||''}\\nDefeito informado: ${o.reported||'A avaliar'}\\nAcessórios recebidos: ${o.accessories||'Não informado'}\\n\\nVamos atualizar você sobre o diagnóstico e o andamento do reparo. Guarde o número da OS.`;
+ }else{
+  message=`Olá, ${o.customer}! Temos uma atualização sobre seu aparelho.\\n\\nOS: #${o.number}\\nAparelho: ${o.brand||''} ${o.model||''}\\nSeu aparelho foi marcado como pronto para retirada. Entre em contato com a assistência para combinar a retirada. Obrigado pela confiança!`;
+ }
+ window.open('https://wa.me/'+intl+'?text='+encodeURIComponent(message),'_blank');
+}
+
+function renderOrders(){const q=($('orderSearch')?.value||'').toLowerCase();const arr=db.orders.filter(o=>[o.number,o.customer,o.phone,o.model,o.brand].join(' ').toLowerCase().includes(q));$('ordersTable').innerHTML=arr.length?`<table><thead><tr><th>OS / Entrada</th><th>Cliente / aparelho</th><th>Serviços</th><th>Total / saldo</th><th>Status</th><th>Ações</th></tr></thead><tbody>${arr.map(o=>`<tr><td><b>#${o.number}</b><br><small>${esc(o.entryDate)}</small></td><td>${esc(o.customer)}<br><small>${esc(o.phone)} • ${esc(o.brand)} ${esc(o.model)}</small></td><td>${(o.services||[]).map(s=>esc(s.name)).join(', ')||'—'}<br><small>${Object.values(o.photos||{}).filter(Boolean).length} foto(s)</small></td><td>${money(o.total)}<br><small>Saldo: ${money(o.balance)}</small></td><td><span class="pill ${o.status==='Entregue'?'green':o.status==='Aguardando peça'?'yellow':o.status==='Cancelado'?'red':''}">${esc(o.status)}</span><br><small>${esc(o.approval)}</small></td><td><div class="row"><button class="secondary small" onclick="viewOrder('${o.id}')">Ver / PDF</button><button class="secondary small" onclick="printOrderCopy('${o.id}','cliente')">Via cliente</button><button class="secondary small" onclick="printOrderCopy('${o.id}','tecnico')">Via técnico</button><button class="secondary small" onclick="sendCustomerUpdate('${o.id}','entrada')">WhatsApp entrada</button><button class="secondary small" onclick="sendCustomerUpdate('${o.id}','pronto')">WhatsApp pronto</button><button class="secondary small" onclick="editOrder('${o.id}')">Editar</button><button class="secondary small" onclick="changeStatus('${o.id}')">Status</button><button class="small" onclick="markConsumed('${o.id}')">Baixar peças</button></div></td></tr>`).join('')}</tbody></table>`:'<div class="empty">Nenhuma ordem cadastrada. Clique em “Nova ordem de serviço” para começar.</div>'}
+$('orderSearch').addEventListener('input',renderOrders);
+$('partForm').addEventListener('submit',e=>{e.preventDefault();const id=$('partId').value;const part={id:id||uid(),name:$('partName').value.trim(),model:$('partModel').value.trim(),sku:$('partSku').value.trim(),supplier:$('partSupplier').value.trim(),cost:Number($('partCost').value)||0,price:Number($('partPrice').value)||0,qty:Number($('partQty').value)||0,min:Number($('partMin').value)||0};if(id){const old=db.parts.find(p=>p.id===id);if(old&&part.qty!==old.qty)db.movements.unshift({id:uid(),partId:id,type:part.qty>old.qty?'in':'out',qty:Math.abs(part.qty-old.qty),reason:'Ajuste no cadastro',date:today()});db.parts=db.parts.map(p=>p.id===id?part:p)}else db.parts.unshift(part);resetPartForm();saveDB()});
+function resetPartForm(){$('partForm').reset();$('partId').value='';$('partQty').value=0;$('partMin').value=1;$('partPrice').value=0}
+function editPart(id){const p=db.parts.find(x=>x.id===id);if(!p)return;Object.entries({partId:p.id,partName:p.name,partModel:p.model,partSku:p.sku,partSupplier:p.supplier,partCost:p.cost,partPrice:p.price,partQty:p.qty,partMin:p.min}).forEach(([k,v])=>$(k).value=v??'');showTab('inventory');window.scrollTo({top:0,behavior:'smooth'})}
+$('movementForm').addEventListener('submit',e=>{e.preventDefault();const p=db.parts.find(x=>x.id===$('movementPart').value),qty=Number($('movementQty').value);if(!p)return alert('Cadastre uma peça primeiro.');if($('movementType').value==='out'&&p.qty<qty)return alert('Quantidade maior que o estoque disponível.');p.qty+= $('movementType').value==='in'?qty:-qty;db.movements.unshift({id:uid(),partId:p.id,type:$('movementType').value,qty,reason:$('movementReason').value||'Sem observação',date:today()});$('movementReason').value='';saveDB();alert('Movimentação registrada.')});
+$('partSearch').addEventListener('input',renderInventory);
+function renderInventory(){const q=($('partSearch')?.value||'').toLowerCase();const arr=db.parts.filter(p=>[p.name,p.model,p.sku,p.supplier].join(' ').toLowerCase().includes(q));$('inventoryTable').innerHTML=arr.length?`<table><thead><tr><th>Peça</th><th>Fornecedor / SKU</th><th>Custo / venda</th><th>Qtd.</th><th>Estado</th><th>Ações</th></tr></thead><tbody>${arr.map(p=>`<tr><td><b>${esc(p.name)}</b><br><small>${esc(p.model)}</small></td><td>${esc(p.supplier||'—')}<br><small>${esc(p.sku||'—')}</small></td><td>${money(p.cost)} / ${money(p.price)}</td><td><b>${p.qty}</b></td><td>${p.qty<=p.min?'<span class="pill yellow">Repor</span>':'<span class="pill green">Disponível</span>'}</td><td><button class="secondary small" onclick="editPart('${p.id}')">Editar</button></td></tr>`).join('')}</tbody></table>`:'<div class="empty">Nenhuma peça cadastrada.</div>'}
+$('serviceForm').addEventListener('submit',e=>{e.preventDefault();const id=$('serviceId').value;const s={id:id||uid(),name:$('serviceName').value.trim(),category:$('serviceCategory').value,partId:$('servicePart').value,cost:Number($('serviceCost').value)||0,price:Number($('servicePrice').value)||0,labor:Number($('serviceLabor').value)||0,time:Number($('serviceTime').value)||0};if(id)db.services=db.services.map(x=>x.id===id?s:x);else db.services.push(s);resetServiceForm();saveDB()});
+function resetServiceForm(){$('serviceForm').reset();$('serviceId').value='';$('serviceCost').value=0;$('servicePrice').value=0;$('serviceLabor').value=0;$('serviceTime').value=60}
+function editService(id){const s=db.services.find(x=>x.id===id);if(!s)return;Object.entries({serviceId:s.id,serviceName:s.name,serviceCategory:s.category,servicePart:s.partId||'',serviceCost:s.cost,servicePrice:s.price,serviceLabor:s.labor,serviceTime:s.time}).forEach(([k,v])=>$(k).value=v??'');showTab('services')}
+function renderServices(){$('serviceTable').innerHTML=db.services.length?`<table><thead><tr><th>Serviço</th><th>Preço</th><th>Peça</th><th></th></tr></thead><tbody>${db.services.map(s=>`<tr><td>${esc(s.name)}<br><small>${esc(s.category)}</small></td><td>${money(s.price)}</td><td>${esc(db.parts.find(p=>p.id===s.partId)?.name||'Não vinculada')}</td><td><button class="secondary small" onclick="editService('${s.id}')">Editar</button></td></tr>`).join('')}</tbody></table>`:'<div class="empty">Nenhum serviço cadastrado.</div>'}
+$('expenseForm').addEventListener('submit',e=>{e.preventDefault();db.expenses.unshift({id:uid(),desc:$('expenseDesc').value.trim(),amount:Number($('expenseAmount').value)||0,date:$('expenseDate').value});$('expenseForm').reset();$('expenseDate').value=today();saveDB()});
+function renderFinance(){const received=db.orders.reduce((a,o)=>a+(Number(o.paid)||0),0),pending=db.orders.reduce((a,o)=>a+(Number(o.balance)||0),0),costs=db.orders.reduce((a,o)=>a+(o.services||[]).reduce((b,s)=>{const p=db.parts.find(p=>p.id===s.partId);return b+(p?Number(p.cost)||0:Number(s.cost)||0)},0),0),expenses=db.expenses.reduce((a,e)=>a+e.amount,0),sales=db.orders.reduce((a,o)=>a+o.total,0);$('fReceived').textContent=money(received);$('fPending').textContent=money(pending);$('fCosts').textContent=money(costs);$('fMargin').textContent=money(sales-costs-expenses);$('expenseTable').innerHTML=db.expenses.length?`<table><thead><tr><th>Data</th><th>Descrição</th><th>Valor</th></tr></thead><tbody>${db.expenses.map(e=>`<tr><td>${esc(e.date)}</td><td>${esc(e.desc)}</td><td>${money(e.amount)}</td></tr>`).join('')}</tbody></table>`:'<div class="empty">Nenhuma despesa registrada.</div>'}
+function renderDashboard(){const open=db.orders.filter(o=>!['Entregue','Cancelado'].includes(o.status)).length,parts=db.orders.filter(o=>o.status==='Aguardando peça').length,ready=db.orders.filter(o=>o.status==='Pronto para retirada').length,rev=db.orders.reduce((a,o)=>a+(Number(o.paid)||0),0);$('mOpen').textContent=open;$('mParts').textContent=parts;$('mReady').textContent=ready;$('mRevenue').textContent=money(rev);const recent=db.orders.slice(0,5);$('recentOrders').innerHTML=recent.length?`<table><thead><tr><th>OS / cliente</th><th>Aparelho</th><th>Status</th></tr></thead><tbody>${recent.map(o=>`<tr><td>#${o.number}<br>${esc(o.customer)}</td><td>${esc(o.brand)} ${esc(o.model)}</td><td><span class="pill">${esc(o.status)}</span></td></tr>`).join('')}</tbody></table>`:'<div class="empty">As ordens recentes aparecerão aqui.</div>';const low=db.parts.filter(p=>p.qty<=p.min);$('stockAlerts').innerHTML=low.length?low.map(p=>`<div style="padding:9px 0;border-bottom:1px solid var(--line)"><b>${esc(p.name)}</b><div class="muted">Estoque: ${p.qty} • mínimo: ${p.min}</div></div>`).join(''):'<div class="empty">Nenhum alerta de estoque.</div>'}
+function renderSelects(){const opts=partOptions();$('movementPart').innerHTML=opts;$('servicePart').innerHTML=opts}
+function renderAll(){renderDashboard();renderOrders();renderInventory();renderServices();renderFinance();renderSelects();renderServiceOptions()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function exportBackup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='backup-assistencia-pro-'+today()+'.json';a.click();URL.revokeObjectURL(url)}
+$('importFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const imported=JSON.parse(await f.text());if(!imported||!Array.isArray(imported.orders)||!Array.isArray(imported.parts)||!Array.isArray(imported.services))throw Error('Formato inválido');if(!confirm('Importar este backup vai substituir os dados locais atuais. Continuar?'))return;db={orders:imported.orders,parts:imported.parts,services:imported.services,expenses:imported.expenses||[],movements:imported.movements||[]};saveDB();alert('Backup importado.')}catch(err){alert('Não foi possível importar: arquivo inválido.')}finally{e.target.value=''}});
+function clearAllData(){if(!confirm('ATENÇÃO: isso apaga todos os dados locais deste protótipo. Exporte um backup antes. Continuar?'))return;if(!confirm('Confirma novamente apagar ordens, peças, despesas e fotos deste navegador?'))return;db={orders:[],parts:[],services:initialServices,expenses:[],movements:[]};saveDB();resetOrderForm();alert('Dados locais apagados.')}
+renderAll();updateTotals();
+</script>
+</body>
+</html>
