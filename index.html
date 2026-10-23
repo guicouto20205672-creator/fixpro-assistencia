@@ -77,6 +77,18 @@ input:focus, select:focus, textarea:focus { border-color:#3b82f6 !important; }
   .section.active { display:block !important; }
 }
 
+
+/* Fix definitivo: conteúdo começa no topo em telas grandes e pequenas */
+.app { align-items:start !important; }
+.main { margin:0 !important; align-self:start !important; }
+.top, #dashboard { margin-top:0 !important; }
+@media (min-width:701px) {
+  .main { padding-top:20px !important; }
+}
+@media (max-width:700px) {
+  .app { display:flex !important; flex-direction:column !important; }
+  .main { padding-top:8px !important; }
+}
 </style>
 </head>
 <body>
